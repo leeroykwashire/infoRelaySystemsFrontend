@@ -81,6 +81,16 @@ const MainLayout = () => {
           </li>
           <li className="nav-item mb-2">
             <Link 
+              to="/goods-return" 
+              className={`nav-link text-white ${isActive('/goods-return') ? 'bg-primary rounded' : ''}`}
+              style={isActive('/goods-return') ? { backgroundColor: '#0d6efd' } : {}}
+            >
+              <i className="bi bi-arrow-return-left me-2"></i>
+              Goods Return
+            </Link>
+          </li>
+          <li className="nav-item mb-2">
+            <Link 
               to="/reports" 
               className={`nav-link text-white ${isActive('/reports') ? 'bg-primary rounded' : ''}`}
               style={isActive('/reports') ? { backgroundColor: '#0d6efd' } : {}}

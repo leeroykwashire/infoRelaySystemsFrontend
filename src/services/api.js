@@ -59,7 +59,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['User', 'Category', 'Item', 'Stock', 'GoodsReceived', 'GoodsIssue', 'Ledger'],
+  tagTypes: ['User', 'Category', 'Item', 'Stock', 'GoodsReceived', 'GoodsIssue', 'GoodsReturn', 'GoodsReturn', 'Ledger'],
   endpoints: (builder) => ({
     // Authentication endpoints
     login: builder.mutation({
@@ -187,6 +187,41 @@ export const apiSlice = createApi({
       invalidatesTags: ['GoodsIssue', 'Stock', 'Ledger'],
     }),
     
+    // Goods Return endpoints
+    getGoodsReturns: builder.query({
+      query: (params) => ({
+        url: '/goods-returns/',
+        params,
+      }),
+      providesTags: ['GoodsReturn'],
+    }),
+    
+    createGoodsReturn: builder.mutation({
+      query: (returnData) => ({
+        url: '/goods-returns/',
+        method: 'POST',
+        body: returnData,
+      }),
+      invalidatesTags: ['GoodsReturn', 'Stock', 'Ledger'],
+    }),
+    
+    updateGoodsReturn: builder.mutation({
+      query: ({ id, ...returnData }) => ({
+        url: `/goods-returns/${id}/`,
+        method: 'PUT',
+        body: returnData,
+      }),
+      invalidatesTags: ['GoodsReturn', 'Stock', 'Ledger'],
+    }),
+    
+    deleteGoodsReturn: builder.mutation({
+      query: (id) => ({
+        url: `/goods-returns/${id}/`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['GoodsReturn', 'Stock', 'Ledger'],
+    }),
+    
     // Ledger endpoints
     getLedger: builder.query({
       query: (params) => ({
@@ -269,6 +304,10 @@ export const {
   useCreateGoodsReceivedMutation,
   useGetGoodsIssuesQuery,
   useCreateGoodsIssueMutation,
+  useGetGoodsReturnsQuery,
+  useCreateGoodsReturnMutation,
+  useUpdateGoodsReturnMutation,
+  useDeleteGoodsReturnMutation,
   useGetLedgerQuery,
   useGetStockReportQuery,
   useGetIssuesReportQuery,

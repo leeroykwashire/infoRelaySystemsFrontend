@@ -14,6 +14,7 @@ import ItemsPage from './pages/ItemsPage';
 import StockPage from './pages/StockPage';
 import GoodsReceivedPage from './pages/GoodsReceivedPage';
 import GoodsIssuePage from './pages/GoodsIssuePage';
+import GoodsReturnPage from './pages/GoodsReturnPage';
 import ReportsPage from './pages/ReportsPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import UsersPage from './pages/UsersPage';
@@ -59,6 +60,9 @@ function App() {
           
           {/* Goods Issue (Stock OUT) */}
           <Route path="goods-issue" element={<GoodsIssuePage />} />
+          
+          {/* Goods Return */}
+          <Route path="goods-return" element={<GoodsReturnPage />} />
           
           {/* Reports */}
           <Route path="reports" element={<ReportsPage />} />
