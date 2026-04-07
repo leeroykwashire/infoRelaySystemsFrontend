@@ -26,3 +26,161 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Print Styles */
+@media print {
+  /* Hide interactive elements */
+  .d-print-none,
+  .nav-tabs,
+  button,
+  .btn {
+    display: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 1.5cm;
+    size: A4 landscape;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Show only report content */
+  body * {
+    visibility: hidden;
+  }
+
+  #reports-root,
+  #reports-root * {
+    visibility: visible;
+  }
+
+  #reports-root {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  /* Print header */
+  #reports-root::before {
+    content: attr(data-report-title) " | " attr(data-print-date);
+    display: block;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #333;
+  }
+
+  /* Cards and tables */
+  .card {
+    border: 1px solid #dee2e6 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .table {
+    font-size: 10pt;
+    page-break-inside: auto;
+  }
+
+  .table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  .table thead {
+    display: table-header-group;
+  }
+
+  .table tfoot {
+    display: table-footer-group;
+  }
+
+  /* Add page breaks between major sections */
+  .report-section {
+    page-break-after: always;
+  }
+
+  .report-section:last-child {
+    page-break-after: auto;
+  }
+
+  /* Ensure proper spacing */
+  h2, h3, h4, h5 {
+    page-break-after: avoid;
+  }
+
+  /* Badge styles for print */
+  .badge {
+    border: 1px solid currentColor;
+    padding: 2px 6px;
+  }
+
+  /* Reduce summary card sizes */
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .row {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Responsive table improvements for small screens */
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.85rem;
+  }
+  
+  .table-sm {
+    font-size: 0.8rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  /* Stack summary cards on mobile */
+  .card-body {
+    padding: 0.75rem;
+  }
+  
+  /* Adjust button groups for mobile */
+  .btn-group .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Make dropdown menus full-width on mobile */
+  .dropdown-menu {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+/* Column selector dropdown positioning */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-menu.show {
+  display: block;
+}
