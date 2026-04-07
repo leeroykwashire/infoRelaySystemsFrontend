@@ -89,6 +89,16 @@ const MainLayout = () => {
               Reports
             </Link>
           </li>
+          <li className="nav-item mb-2">
+            <Link 
+              to="/analytics" 
+              className={`nav-link text-white ${isActive('/analytics') ? 'bg-primary rounded' : ''}`}
+              style={isActive('/analytics') ? { backgroundColor: '#0d6efd' } : {}}
+            >
+              <i className="bi bi-graph-up me-2"></i>
+              Analytics
+            </Link>
+          </li>
           
           {/* Admin-only section */}
           {user?.is_admin && (

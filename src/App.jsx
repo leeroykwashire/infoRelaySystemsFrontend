@@ -15,6 +15,7 @@ import StockPage from './pages/StockPage';
 import GoodsReceivedPage from './pages/GoodsReceivedPage';
 import GoodsIssuePage from './pages/GoodsIssuePage';
 import ReportsPage from './pages/ReportsPage';
+import AnalyticsPage from './pages/AnalyticsPage';
 import UsersPage from './pages/UsersPage';
 import CategoriesPage from './pages/CategoriesPage';
 
@@ -61,6 +62,9 @@ function App() {
           
           {/* Reports */}
           <Route path="reports" element={<ReportsPage />} />
+          
+          {/* Analytics - Data Science */}
+          <Route path="analytics" element={<AnalyticsPage />} />
           
           {/* Admin-only: Categories Management */}
           <Route
