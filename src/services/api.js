@@ -1,9 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setCredentials, logout, updateAccessToken } from '../features/auth/authSlice';
 
+// Use environment variable for API URL, fallback to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+
 // Base query with authentication and token refresh logic
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:8000/api',
+  baseUrl: API_BASE_URL,
   prepareHeaders: (headers, { getState }) => {
     // Get access token from Redux state
     const token = getState().auth.accessToken;

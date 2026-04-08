@@ -10,6 +10,9 @@ build/
 .env
 .env.local
 
+# Sensitive docs
+DEPLOYMENT_CHECKLIST.md
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
