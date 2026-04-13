@@ -276,7 +276,7 @@ const AnalyticsPage = () => {
     <div className="container-fluid">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <h2>Data Science Analytics</h2>
+          <h2>Stock Analytics</h2>
           <p className="text-muted mb-0">
             Advanced analytics, forecasting, and insights
           </p>
