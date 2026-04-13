@@ -64,7 +64,7 @@ const AnalyticsPage = () => {
   }, [timeRange]);
   
   const recentIssued = useMemo(() => 
-    issued.filter(item => new Date(item.issue_date) >= cutoffDate),
+    issued.filter(item => new Date(item.issued_date) >= cutoffDate),
     [issued, cutoffDate]
   );
   
@@ -146,8 +146,6 @@ const AnalyticsPage = () => {
         totalIssued,
         turnoverRatio,
         daysToStockout: daysToStockout === Infinity ? '>365' : Math.round(daysToStockout),
-        reorderLevel: Number(stockItem.reorder_level) || 0,
-        needsReorder: currentStock <= Number(stockItem.reorder_level),
         unit: stockItem.item_unit || 'units'
       };
     }).sort((a, b) => b.turnoverRatio - a.turnoverRatio);
@@ -346,18 +344,7 @@ const AnalyticsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-3">
-              <div className="card shadow-sm border-warning">
-                <div className="card-body">
-                  <h6 className="text-muted mb-2">Needs Reorder</h6>
-                  <h3 className="mb-0 text-warning">
-                    {turnoverAnalysis.filter(i => i.needsReorder).length}
-                  </h3>
-                  <small className="text-muted">Below reorder level</small>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <div className="card shadow-sm border-danger">
                 <div className="card-body">
                   <h6 className="text-muted mb-2">Critical Stock</h6>
@@ -368,7 +355,7 @@ const AnalyticsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <div className="card shadow-sm border-success">
                 <div className="card-body">
                   <h6 className="text-muted mb-2">Avg Turnover Ratio</h6>
@@ -407,7 +394,6 @@ const AnalyticsPage = () => {
                       <th className="text-end">Total Issued</th>
                       <th className="text-end">Turnover Ratio</th>
                       <th className="text-end">Days to Stockout</th>
-                      <th className="text-center">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -433,13 +419,6 @@ const AnalyticsPage = () => {
                           }`}>
                             {item.daysToStockout} days
                           </span>
-                        </td>
-                        <td className="text-center">
-                          {item.needsReorder && (
-                            <span className="badge bg-warning">
-                              <i className="bi bi-exclamation-triangle"></i> Reorder
-                            </span>
-                          )}
                         </td>
                       </tr>
                     ))}
